@@ -1,12 +1,11 @@
-def capitalize(lower_case_word):
-    lower_case_word = list(lower_case_word)
-    lower_case_word[0] = chr(ord(lower_case_word[0]) - 32)
-    return ''.join(lower_case_word)
+def capitalize(word):
+    return word[0].upper() + word[1:]
 
 
 def main():
     words_list = input().split(' ')
-    [print(capitalize(element), end=' ') for element in words_list]
+    for word in words_list:
+        print(capitalize(word), end=' ')
 
 
 if __name__ == "__main__":

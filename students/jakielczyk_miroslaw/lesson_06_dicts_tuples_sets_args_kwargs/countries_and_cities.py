@@ -1,13 +1,13 @@
 n = int(input())
 country_and_cities_dict = dict()
-for x in range(n):
+for _ in range(n):
     country_and_cities = input().split(' ')
     country_and_cities_dict[country_and_cities[0]] = \
         country_and_cities[1:]
 
 number_of_cities = int(input())
-for city in range(number_of_cities):
+for _ in range(number_of_cities):
     name_of_city = input()
-    for key in country_and_cities_dict:
-        if name_of_city in country_and_cities_dict[key]:
-            print(key)
+    for country, cities in country_and_cities_dict.items():
+        if name_of_city in cities:
+            print(country)

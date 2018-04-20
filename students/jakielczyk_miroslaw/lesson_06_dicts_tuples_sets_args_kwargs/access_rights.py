@@ -1,27 +1,28 @@
 number_of_files = int(input())
 file_access_rights = dict()
 
-for file in range(number_of_files):
-    entry = input().split(' ')
-    file_access_rights[entry[0]] = entry[1:]
+OPERATIONS_DICT = {
+        'read': 'R',
+        'write': 'W',
+        'execute': 'X'
+    }
 
-number_of_operations = int(input())
-for operation in range(number_of_operations):
+for _ in range(number_of_files):
+    file, *access_rights = input().split()
+    file_access_rights[file] = access_rights
+
+number_of_file_operations = int(input())
+for _ in range(number_of_file_operations):
     access_denied = True
-    operation_entry = input().split(' ')
-    if operation_entry[0] == "read":
-        operation_entry[0] = "R"
-    elif operation_entry[0] == "write":
-        operation_entry[0] = "W"
-    elif operation_entry[0] == "execute":
-        operation_entry[0] = "X"
+    file_operation = input().split(' ')
+    if file_operation[0] in OPERATIONS_DICT.keys():
+        file_operation[0] = OPERATIONS_DICT[file_operation[0]]
 
-    if operation_entry[1] in file_access_rights:
-        for allowed_access in file_access_rights[operation_entry[1]]:
-            if operation_entry[0] == allowed_access:
+    if file_operation[1] in file_access_rights:
+        for allowed_access in file_access_rights[file_operation[1]]:
+            if file_operation[0] == allowed_access:
                 access_denied = False
-                break
     if access_denied:
-        print("access denied")
+        print("Access denied")
     else:
         print("OK")
